@@ -18,6 +18,11 @@ export const router = createRouter({
       component: () => import('../views/LoginView.vue')
     },
     {
+      path: '/task',
+      name: 'task',
+      component: () => import('../views/TaskView.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
@@ -28,16 +33,16 @@ export const router = createRouter({
   ]
 })
 
-router.beforeEach(async (to) => {
-  // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/login'];
-  const authRequired = !publicPages.includes(to.path);
-  const auth = useAuthStore();
+// router.beforeEach(async (to) => {
+//   // redirect to login page if not logged in and trying to access a restricted page
+//   const publicPages = ['/login'];
+//   const authRequired = !publicPages.includes(to.path);
+//   const auth = useAuthStore();
 
-  if (authRequired && !auth.user) {
-      auth.returnUrl = to.fullPath;
-      return '/login';
-  }
-});
+//   if (authRequired && !auth.user) {
+//       auth.returnUrl = to.fullPath;
+//       return '/login';
+//   }
+// });
 
 export default router
