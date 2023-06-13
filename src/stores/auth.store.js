@@ -2,8 +2,8 @@ import { defineStore } from 'pinia';
 
 import { fetchWrapper, router } from '@/helpers';
 
-// const baseUrl = `${import.meta.env.AUTH_API_URL}/users`;
-const baseUrl = `/users`;
+const baseUrl = import.meta.env.VITE_AUTH_API_URL;
+// console.log({baseUrl})
 
 export const useAuthStore = defineStore({
     id: 'auth',
@@ -13,10 +13,10 @@ export const useAuthStore = defineStore({
         returnUrl: null
     }),
     actions: {
-        async login(username, password) {
-            const user = await fetchWrapper.post(`${baseUrl}/authenticate`, { username, password });
+        async login(email, password) {
+            const user = await fetchWrapper.post(`${baseUrl}/api/auth/login`, { email, password });
 
-            console.log('here')
+            console.log({user})
 
             // update pinia state
             this.user = user;
