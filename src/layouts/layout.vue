@@ -1,12 +1,4 @@
 <template>
-    <!--
-      This example requires updating your template:
-  
-      ```
-      <html class="h-full bg-gray-100">
-      <body class="h-full">
-      ```
-    -->
     <div class="min-h-full">
       <div class="bg-indigo-600 pb-32">
         <Disclosure as="nav" class="border-b border-indigo-300 border-opacity-25 bg-indigo-600 lg:border-none" v-slot="{ open }">
