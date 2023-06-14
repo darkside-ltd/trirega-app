@@ -14,7 +14,7 @@ const authStore = useAuthStore();
                 <a @click="authStore.logout()" class="nav-item nav-link">Logout</a>
             </div>
         </nav>
-        <div class="container pt-4 pb-4">
+        <div class="container pt-4 pb-4 px-4">
             <RouterView />
         </div>
     </div>

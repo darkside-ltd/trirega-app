@@ -14,7 +14,7 @@ import SupportIcon from './icons/IconSupport.vue'
       <DocumentationIcon />
     </template>
     <template #heading>Task View</template>
-    <a href="/task" target="_blank" rel="noopener">Task View Link</a>
+    <router-link to="/tasklist">Task View Link</router-link>
   </WelcomeItem>
 
   <WelcomeItem>
