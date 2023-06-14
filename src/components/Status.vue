@@ -1,5 +1,7 @@
 <template>
-  <p :class="[statuses[status], 'rounded-md whitespace-nowrap mt-0.5 px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset']">{{ status }}</p>
+  <p :class="[statuses[status], 'rounded-md whitespace-nowrap mt-0.5 px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset']">
+   <slot></slot>
+  </p>
 </template>
 
 <script>

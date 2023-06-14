@@ -31,8 +31,20 @@ export const router = createRouter({
       path: '/task/:taskId',
       name: 'task',
       component: () => import('../views/TaskView.vue')
+    },
+    {
+      path: '/signout',
+      name: 'signout',
+      component: () => import('../views/SignOutView.vue')
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  },
 })
 
 router.beforeEach(async (to) => {

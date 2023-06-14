@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { useTasksStore } from '@/stores'
 import TaskList from '@/components/TaskList.vue'
+import Layout from '@/layouts/Layout.vue'
 
 export default {
   setup() {
@@ -25,6 +26,7 @@ export default {
   },
   components: {
     TaskList,
+    Layout,
   },
   data() {
     return {
@@ -83,8 +85,9 @@ export default {
 <template>
   <div>
     <!-- <task-list :items="items"></task-list> -->
-    <task-list :items="taskStore.tasks.data"></task-list>
-
+    <Layout h1="All Tasks">
+      <task-list :items="taskStore.tasks.data"></task-list>
+    </Layout>
     <!-- <ul class="divide-y divide-gray-200">
       <li v-for="task in taskStore.tasks.data" :key="task.email" class="py-4 flex">
         <img class="h-10 w-10 rounded-full" :src="task.image" alt="" />
