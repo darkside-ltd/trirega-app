@@ -116,7 +116,7 @@
 
 <template v-if="split">
       <main class="-mt-24 pb-8">
-      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div class="mx-auto max-w-4xl md:px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <h1 class="sr-only">Page title</h1>
         <!-- Main 3 column grid -->
         <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8 ">
@@ -124,7 +124,7 @@
           <div class="grid grid-cols-1 gap-4 lg:col-span-2">
             <section aria-labelledby="section-1-title">
               <h2 class="sr-only" id="section-1-title">Section title</h2>
-              <div class="overflow-hidden rounded-lg bg-white shadow min-h-screen">
+              <div class="overflow-hidden md:rounded-lg bg-white shadow min-h-screen">
                 <div class="p-6">
                   <!-- Your content -->
                   <slot name="content"></slot>
@@ -137,7 +137,7 @@
           <div class="grid grid-cols-1 gap-4">
             <section aria-labelledby="section-2-title">
               <h2 class="sr-only" id="section-2-title">Section title</h2>
-              <div class="overflow-hidden rounded-lg bg-white shadow">
+              <div class="overflow-hidden md:rounded-lg bg-white shadow">
                 <div class="p-6">
                   <!-- Your content -->
                   <slot name="aside"></slot>
@@ -152,7 +152,7 @@
 
 <template v-else>
       <main class="-mt-32">
-        <div class="mx-auto max-w-7xl min-h-screen px-4 pb-12 sm:px-6 lg:px-8 bg-white rounded-lg shadow">
+        <div class="mx-auto max-w-7xl min-h-screen px-4 pb-12 sm:px-6 lg:px-8 bg-white md:rounded-lg shadow">
           <slot></slot>
         </div>
       </main>
