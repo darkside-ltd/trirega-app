@@ -21,7 +21,7 @@ export default {
         'green': 'bg-green-50 text-green-700 ring-green-700/10',
         'blue': 'bg-blue-50 text-blue-700 ring-blue-700/10',
         'sky': 'bg-sky-50 text-sky-700 ring-sky-700/10',
-        'indigo': 'bg-ndigo-50 text-ndigo-700 ring-ndigo-700/10',
+        'indigo': 'bg-indigo-50 text-indigo-700 ring-indigo-700/10',
         'purple': 'bg-purple-50 text-purple-700 ring-purple-700/10',
       },
     };

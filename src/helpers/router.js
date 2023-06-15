@@ -36,6 +36,11 @@ export const router = createRouter({
       path: '/signout',
       name: 'signout',
       component: () => import('../views/SignOutView.vue')
+    },
+    {
+      path: '/components',
+      name: 'components',
+      component: () => import('../views/ComponentView.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {
