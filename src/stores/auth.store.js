@@ -28,6 +28,7 @@ export const useAuthStore = defineStore({
             router.push(this.returnUrl || '/');
         },
         logout() {
+            console.log('logout function')
             this.user = null;
             localStorage.removeItem('user');
             router.push('/login');

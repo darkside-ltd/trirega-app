@@ -13,7 +13,7 @@ export default {
     authStore.logout(); // Call the logout function to log out the user
     // You can also perform any additional cleanup or redirection logic here
     // For example, you can use Vue Router to navigate to a different route
-    // router.push('/login');
+    router.push('/login');
   },
 };
 </script>
