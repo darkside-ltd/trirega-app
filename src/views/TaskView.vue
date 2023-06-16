@@ -75,7 +75,7 @@ export default {
       </template>
 
       <template #topright>
-          <TaskActions :status="task.status" :type="task.taskType"></TaskActions>
+          <TaskActions :status="task.status" :type="task.taskType" :taskId="task.recordId"></TaskActions>
       </template>
 
       <template #content>
