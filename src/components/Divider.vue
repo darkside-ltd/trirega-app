@@ -15,7 +15,7 @@
         <div class="w-full border-t border-gray-300" />
       </div>
       <div class="relative flex justify-start my-8">
-        <span class="bg-white pr-3 text-base font-semibold leading-6 text-gray-900"><slot></slot></span>
+        <span class="bg-white pr-3 text-base font-semibold leading-6"><slot></slot></span>
       </div>
     </div>
   </template>

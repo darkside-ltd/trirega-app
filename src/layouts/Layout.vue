@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-full">
+    <div class="min-h-full text-slate-950">
       <div class="bg-indigo-600 pb-32">
         <Disclosure as="nav" class="border-b border-indigo-300 border-opacity-25 bg-indigo-600 lg:border-none" v-slot="{ open }">
           <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
@@ -105,7 +105,7 @@
           <div class="">
             <h1 class="text-3xl font-bold tracking-tight text-white">{{ h1 }}</h1>
           </div>
-          <div class="flex justify-between">
+          <div class="md:flex justify-between">
             <div><slot name="topleft"></slot></div>
             <div><slot name="topright"></slot></div>
             </div>
