@@ -69,4 +69,6 @@ router.beforeEach(async (to) => {
   }
 });
 
+// https://medium.com/js-dojo/how-to-dynamically-change-the-page-title-with-vue-and-vue-router-99904906ce45
+
 export default router

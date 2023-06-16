@@ -14,9 +14,12 @@ import DataPoint from '@/components/DataPoint.vue'
 import Divider from '@/components/Divider.vue'
 
 export default {
+  title: `Task`,
   setup() {
     const route = useRoute();
     const task = ref([]);
+
+    // title="shit"
 
     onMounted(fetchData);
 

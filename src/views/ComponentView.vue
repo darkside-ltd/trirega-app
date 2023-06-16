@@ -11,6 +11,7 @@ import ActivityFeed from '@/components/ActivityFeed.vue'
 import Button from '@/components/Button.vue'
 
 export default {
+  title: 'Components',
   components: {
     Layout,
     Badge,

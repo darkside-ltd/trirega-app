@@ -5,6 +5,7 @@ import TaskList from '@/components/TaskList.vue'
 import Layout from '@/layouts/Layout.vue'
 
 export default {
+  title: 'All Tasks',
   setup() {
     const taskStore = useTasksStore();
     const tasks = ref([]);
