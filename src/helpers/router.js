@@ -46,6 +46,17 @@ export const router = createRouter({
       path: '/settings',
       name: 'settings',
       component: () => import('../views/SettingsView.vue')
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: () => import('../views/SearchView.vue'),
+      props: route => ({ query: route.query.q }),
+    },
+    {
+      path: '/list/:listType',
+      name: 'dynamiclist',
+      component: () => import('../views/DynamicListView.vue'),
     }
   ],
   scrollBehavior(to, from, savedPosition) {

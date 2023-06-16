@@ -9,16 +9,13 @@
       <Button colour="soft-indigo" size="md" :disabled="isButtonDisabled" @click="updateTask({action:'complete'})">Complete</Button>
     </template>
 
-    <template v-if="status === 'Completed'">
+    <template v-if="status === 'Completed' || status === 'Cancelled'">
       <Button colour="soft-indigo" size="md" :disabled="isButtonDisabled" @click="updateTask({action:'close'})">Close</Button>
-    </template>
-
-    <template v-if="type === 'Planned' && status === 'Closed'">
-      <!-- <Button colour="soft-indigo" size="md" :disabled="isButtonDisabled" @click="updateTask({action:'planned'})">Add to plan</Button> -->
+      <Button colour="soft-indigo" size="md" :disabled="isButtonDisabled" @click="updateTask({action:'reopen'})">Reopen</Button>
     </template>
 
     <template v-if="type === 'Reactive' && status === 'Closed'">
-      <!-- <Button colour="soft-indigo" size="md" :disabled="isButtonDisabled" @click="updateTask({action:'activate'})">Reactivate</Button> -->
+      <Button colour="soft-indigo" size="md" :disabled="isButtonDisabled" @click="updateTask({action:'activate'})">Reactivate</Button>
     </template>
 
   </div>
@@ -73,6 +70,7 @@ export default {
           this.enableButton()
           // Emit the "completed" event to the parent component with the response data
           this.$emit('task updated', response.data);
+          this.$router.go()
         })
         .catch((error) => {
           console.error('Error:', error);

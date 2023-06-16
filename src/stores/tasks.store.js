@@ -19,6 +19,6 @@ export const useTasksStore = defineStore({
                     return
                 })
                 .catch(error => this.users = { error })
-        }
+        },
     }
 });

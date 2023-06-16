@@ -1,6 +1,6 @@
 <template>
-    <ul role="list" class="divide-y divide-gray-100">
-      <li v-for="item in items" :key="item.id" :class="[statusStyle[item.status],'flex items-center justify-between text-gray-500']">
+    <ul role="list" class="divide-y divide-slate-100">
+      <li v-for="item in items" :key="item.id" :class="[statusStyle[item.status],'flex items-center justify-between text-slate-700']">
 
         <router-link class="w-full flex items-center justify-between gap-x-6 py-5" :to="`/task/${item.id}`">
         <div class="min-w-0">
@@ -29,7 +29,7 @@
         </div>
         <div class="flex flex-none items-center gap-x-4">
           <!-- <dot :status="item.status">{{ item.status }}</dot> -->
-          <ChevronRightIcon class="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+          <ChevronRightIcon class="h-5 w-5 flex-none text-slate-500" aria-hidden="true" />
         </div>
       </router-link>
 
