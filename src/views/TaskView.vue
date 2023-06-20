@@ -1,6 +1,6 @@
 <script>
 import { ref, onMounted } from 'vue';
-import { fetchWrapper, formatDate, formatDistanceValue } from '@/helpers';
+import { fetchWrapper, formatDate, formatDistanceValue, formatDistanceToNowStrictValue } from '@/helpers';
 import { useRoute } from 'vue-router';
 import Layout from '@/layouts/Layout.vue'
 const baseUrl = import.meta.env.VITE_AUTH_API_URL;
@@ -61,6 +61,9 @@ export default {
     },
     formatDistance(a,b,c) {
       return formatDistanceValue(a,b,c);
+    },
+    formatDistanceToNowStrict(a,b) {
+      return formatDistanceToNowStrictValue(a,b);
     }
   },
 }
@@ -97,7 +100,7 @@ export default {
 
             <Divider>Details</Divider>
             <!-- <p class="font-medium text-xl mt-8">Details</p> -->
-            <DataPoint title="Request Class" :value="task.requestClass"/>
+            <DataPoint title="Request Class" :value="task.requestClass?.data?.requestClassPath"/>
             <DataPoint title="Service Class" value="Not in JSON"/>
             <DataPoint title="Primary Work Location" :value="task.workLocation"/>
             <DataPoint title="Certificate Required?" :value="task.certificateRequired"/>
@@ -108,7 +111,7 @@ export default {
             <DataPoint title="Full Name" value="Not in JSON"/>
             <DataPoint title="Created" isDate :value="task.createdDateTime"/>
             <DataPoint title="Request Type" :value="task.taskType"/>
-            <DataPoint title="Request Class" :value="task.requestClass"/>
+            <!-- <DataPoint title="Request Class" :value="task.requestClass"/> -->
             <!-- <DataPoint title="" :value="task."/> -->
 
             <Divider>Planned</Divider>
@@ -138,7 +141,7 @@ export default {
 
       <template #aside>
           <div class="text-xl font-semibold"><h2>Activity</h2></div>
-          <div class="mt-4"><ActivityFeed></ActivityFeed></div>
+          <div class="mt-4"><ActivityFeed :activity="task.activities"></ActivityFeed></div>
       </template>
 
     </Layout>

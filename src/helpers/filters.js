@@ -12,7 +12,7 @@ export const formatDate = (value) => {
   return new Date(value).toLocaleString('en-UK', options);
 };
 
-import { formatDuration, intervalToDuration, formatDistance, format, formatDistanceToNow } from 'date-fns';
+import { formatDuration, intervalToDuration, formatDistance, format, formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns';
 
 export function fnsformatDate(value, dateFormat) {
   if(value) return format(new Date(value), dateFormat);
@@ -34,5 +34,11 @@ export const formatDistanceValue = (date, baseDate, options) => {
 export function formatDistanceToNowValue(date, options) {
   console.log({date, options})
   if(date) return formatDistanceToNow(new Date(date), options)
+  return
+}
+
+export function formatDistanceToNowStrictValue(date, options){
+  console.log({date, options})
+  if(date) return formatDistanceToNowStrict(new Date(date), [options])
   return
 }

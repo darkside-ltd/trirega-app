@@ -8,7 +8,7 @@
             class="relative flex h-16 items-center justify-between lg:border-b lg:border-indigo-400 lg:border-opacity-25">
             <div class="flex items-center px-2 lg:px-0">
               <div class="flex-shrink-0">
-                <img class="block h-8 w-8" src="/images/logoipsum-249.svg?color=indigo&shade=300" alt="Your Company" />
+                <router-link to="/"><img class="block h-8 w-8" src="/images/logoipsum-249.svg?color=indigo&shade=300" alt="Your Company" /></router-link>
               </div>
               <div class="hidden lg:ml-10 lg:block">
                 <div class="flex space-x-4">
