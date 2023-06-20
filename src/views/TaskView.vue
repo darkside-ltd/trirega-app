@@ -31,8 +31,9 @@ export default {
         // Append taskId to the API endpoint
         const url = `${baseUrl}/api/workTask/${taskId}`
         const result = await fetchWrapper.get(url)
-        task.value = result.data[0]
-        console.log({task})
+        const taskValue = result.data
+        console.log({taskValue})
+        task.value = taskValue
 
       } catch (error) {
         console.error('Error fetching data:', error);

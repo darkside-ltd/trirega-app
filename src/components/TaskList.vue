@@ -1,8 +1,8 @@
 <template>
     <ul role="list" class="divide-y divide-slate-100">
-      <li v-for="item in items" :key="item.id" :class="[statusStyle[item.status],'flex items-center justify-between text-slate-700']">
+      <li v-for="item in items" :key="item.recordId" :class="[statusStyle[item.status],'flex items-center justify-between text-slate-700']">
 
-        <router-link class="w-full flex items-center justify-between gap-x-6 py-5" :to="`/task/${item.id}`">
+        <router-link class="w-full flex items-center justify-between gap-x-6 py-5" :to="`/task/${item.recordId}`">
         <div class="min-w-0">
           <div class="flex items-start gap-x-3"> 
             <p class="flex items-center gap-2 text-sm font-semibold leading-6">{{ item.id }}</p>
