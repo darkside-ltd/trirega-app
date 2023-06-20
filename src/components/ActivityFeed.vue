@@ -10,7 +10,7 @@
         <template v-if="item.comment">
           <!-- <img :src="item?.person?.imageUrl" alt="" class="relative mt-3 h-6 w-6 flex-none rounded-full bg-gray-50" /> -->
           <div class="relative flex h-8 w-6 -mt-1 flex-none items-center justify-center bg-white">
-          <UserCircleIcon class="relative h-6 w-6 flex-none rounded-full text-indigo-200" aria-hidden="true" />
+          <UserCircleIcon class="relative h-6 w-6 flex-none rounded-full text-slate-600" aria-hidden="true" />
         </div>
           <!-- <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-white">
             <CheckCircleIcon v-if="item?.type === 'paid'" class="h-6 w-6 text-indigo-600" aria-hidden="true" />
@@ -33,7 +33,7 @@
             <div v-else class="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300" />
           </div>
           <p class="flex-auto py-0.5 text-xs leading-5 text-gray-500">
-            <span class="font-medium text-gray-900">{{ item?.createdBy }}</span> {{ item?.newStatus }} the task.
+            <span class="font-medium text-gray-900">{{ item?.createdBy }}</span> {{ item?.newStatus }}.
           </p>
           <time :datetime="item.dateTime" class="flex-none py-0.5 text-xs leading-5 text-gray-500">{{ formatDistanceToNowStrict(item?.dateTime) }} ago</time>
         </template>
@@ -114,10 +114,11 @@
     XMarkIcon,
     ChatBubbleBottomCenterIcon,
     ChatBubbleOvalLeftIcon,
+    UserCircleIcon,
   } from '@heroicons/vue/20/solid'
   import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
   import { formatDistanceToNowStrictValue } from '@/helpers';
-import { UserCircleIcon } from '@heroicons/vue/24/outline';
+// import { UserCircleIcon } from '@heroicons/vue/24/outline';
 
   function formatDistanceToNowStrict(a,b) {
       return formatDistanceToNowStrictValue(a,b);
