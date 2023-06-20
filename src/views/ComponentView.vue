@@ -39,6 +39,14 @@ export default {
       </template>
 
       <div class="flex flex-col md:flex-row gap-4 pt-4 items-center">
+        <Button colour="indigo" size="xs" loading>xs Button</Button>
+        <Button colour="indigo" size="sm" loading>sm Button</Button>
+        <Button colour="indigo" size="md" loading>md Button</Button>
+        <Button colour="indigo" size="lg" loading>lg Button</Button>
+        <Button colour="indigo" size="xl" loading>xl Button</Button>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-4 pt-4 items-center">
         <Button colour="indigo" size="xs">xs Button</Button>
         <Button colour="indigo" size="sm">sm Button</Button>
         <Button colour="indigo" size="md">md Button</Button>
