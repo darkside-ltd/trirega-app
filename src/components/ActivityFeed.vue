@@ -213,7 +213,7 @@ const submitComment = (event) => {
       .then((response) => {
         console.log({ response }, 'API response received');
         enableButton();
-        emit('task-updated', response.data);
+        // emit('task-updated', response.data);
         router.go(); // Refresh the page
       })
       .catch((error) => {

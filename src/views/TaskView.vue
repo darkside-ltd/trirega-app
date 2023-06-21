@@ -76,7 +76,7 @@ export default {
 </script>
 
 <template>
-    <Layout :h1="task.id" :split="true">
+    <Layout :h1="task.id" split>
 
       <template #topleft>
         <div class="flex gap-2 mt-2">
@@ -134,22 +134,23 @@ export default {
             <DataPoint title="Duration" :value="formatDistance(task.plannedEnd, task.plannedStart, {})"/>
             <DataPoint title="Follow Up" isDate :value="task.plannedFollowUpDateTime"/>
             <DataPoint title="Follow Up Within" :value="task.plannedFollowUpWithin"/>
-            <DataPoint title="Working Days" :value="formatDistance(task.plannedWorkingDays)"/>
+            <DataPoint title="Working Days" :value="`${task.plannedWorkingDays} Day(s)`"/>
             <DataPoint title="Working Hours" :value="readableHours(task.plannedWorkingHours)"/>
             <!-- <DataPoint title="Working Hours 1.5" :value="readableHours(1.5)"/>
             <DataPoint title="Working Hours 50" :value="readableHours(50)"/>
             <DataPoint title="Working Hours 0.21343645" :value="readableHours(0.21343645)"/> -->
+            <DataPoint title="Baseline Total Cost" :value="readableMoney(task.baselineTotalCost)"/>
             <DataPoint title="Planned Cost" :value="readableMoney(task.plannedCost)"/>
-            <DataPoint title="Basline Total Cost" :value="readableMoney(task.baselineTotalCost)"/>
-            <DataPoint title="Basline Total Cost test" :value="readableMoney('9999.99')"/>
+            <!-- <DataPoint title="Baseline Total Cost test" :value="readableMoney('9999.99')"/> -->
 
             <Divider>Actual</Divider>
             <DataPoint title="Start" isDate :value="task.actualStart"/>
             <DataPoint title="End" isDate :value="task.actualEnd"/>
             <DataPoint title="Duration" :value="formatDistance(task.actualEnd, task.actualStart, {})"/>
-            <DataPoint title="Accepted Datetime" value="Not in JSON"/>
-            <DataPoint title="On Site Datetime" value="Not in JSON"/>
-            <DataPoint title="Completed On Site" value="Not in JSON"/>
+            <!-- <DataPoint title="Accepted Datetime" value="Not in JSON"/> -->
+            <!-- <DataPoint title="On Site Datetime" value="Not in JSON"/> -->
+            <!-- <DataPoint title="Completed On Site" value="Not in JSON"/> -->
+            <DataPoint title="Actual Cost" :value="readableMoney(task.actualCost)"/>
 
         <!-- <div class="mt-4 flex items-center gap-x-2 leading-5">
           {{ task }}

@@ -103,8 +103,8 @@ export function formatDurationHours(hours) {
   let dMins = ''
   let extraHours = 0
   if(duration.days()) extraHours = duration.days() * 24
-  if(wholeNumber) dHours = `${duration.hours() + extraHours} hrs`
-  if(minutes) dMins = `${duration.minutes()} mins`
+  if(wholeNumber) dHours = `${duration.hours() + extraHours} Hour(s)`
+  if(minutes) dMins = `${duration.minutes()} Minute(s)`
   const formattedDuration = dHours + ' ' + dMins;
 
   return formattedDuration;
@@ -112,8 +112,11 @@ export function formatDurationHours(hours) {
 
 
 export function formatMoney(value, locale, currency){
-  console.log({value, locale, currency})
-  if(!value) return
+  // console.log({value, locale, currency})
+
+  // if(value !== null) return
+  // if(!value) return
+
   if(!locale) locale = "en-GB"
   if(!currency) currency = "GBP"
   const formatter =  new Intl.NumberFormat(locale, {
