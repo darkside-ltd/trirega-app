@@ -1,58 +1,66 @@
 <template>
-    <ul role="list" class="space-y-6">
+  <ul role="list" class="space-y-6">
 
-      <li v-for="(item, itemIdx) in activity" :key="item.id" class="relative flex gap-x-4">
+    <li v-for="(item, itemIdx) in activity" :key="item.id" class="relative flex gap-x-4">
 
-        <div :class="[itemIdx === activity.length - 1 ? 'h-6' : '-bottom-6', 'absolute left-0 top-0 flex w-6 justify-center']">
-          <div class="w-px bg-gray-200" />
-        </div>
+      <div
+        :class="[itemIdx === activity.length - 1 ? 'h-6' : '-bottom-6', 'absolute left-0 top-0 flex w-6 justify-center']">
+        <div class="w-px bg-gray-200" />
+      </div>
 
-        <template v-if="item.comment">
-          <!-- <img :src="item?.person?.imageUrl" alt="" class="relative mt-3 h-6 w-6 flex-none rounded-full bg-gray-50" /> -->
-          <div class="relative flex h-8 w-6 -mt-1 flex-none items-center justify-center bg-white">
+      <template v-if="item.comment">
+        <!-- <img :src="item?.person?.imageUrl" alt="" class="relative mt-3 h-6 w-6 flex-none rounded-full bg-gray-50" /> -->
+        <div class="relative flex h-8 w-6 -mt-1 flex-none items-center justify-center bg-white">
           <UserCircleIcon class="relative h-6 w-6 flex-none rounded-full text-slate-600" aria-hidden="true" />
         </div>
-          <!-- <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-white">
+        <!-- <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-white">
             <CheckCircleIcon v-if="item?.type === 'paid'" class="h-6 w-6 text-indigo-600" aria-hidden="true" />
             <div v-else class="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300" />
           </div> -->
-          <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200">
-            <div class="flex justify-between gap-x-4">
-              <div class="py-0.5 text-xs leading-5 text-gray-500">
-                <span class="font-medium text-gray-900">{{ item?.modifiedBy }}</span> commented
-              </div>
-              <time :datetime="item.dateTime" class="flex-none py-0.5 text-xs leading-5 text-gray-500">{{ formatDistanceToNowStrict(item?.dateTime) }} ago</time>
+        <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200">
+          <div class="flex justify-between gap-x-4">
+            <div class="py-0.5 text-xs leading-5 text-gray-500">
+              <span class="font-medium text-gray-900">{{ item?.modifiedBy }}</span> commented
             </div>
-            <p class="text-sm leading-6 text-gray-500">{{ item?.comment }}</p>
+            <time :datetime="item.dateTime" class="flex-none py-0.5 text-xs leading-5 text-gray-500">{{
+              formatDistanceToNowStrict(item?.dateTime) }} ago</time>
           </div>
-        </template>
-
-        <template v-else>
-          <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-white">
-            <CheckCircleIcon v-if="item?.type === 'paid'" class="h-6 w-6 text-indigo-600" aria-hidden="true" />
-            <div v-else class="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300" />
-          </div>
-          <p class="flex-auto py-0.5 text-xs leading-5 text-gray-500">
-            <span class="font-medium text-gray-900">{{ item?.createdBy }}</span> {{ item?.newStatus }}.
-          </p>
-          <time :datetime="item.dateTime" class="flex-none py-0.5 text-xs leading-5 text-gray-500">{{ formatDistanceToNowStrict(item?.dateTime) }} ago</time>
-        </template>
-
-      </li>
-    </ul>
-  
-    <!-- New comment form -->
-    <div class="mt-6 flex gap-x-3">
-      <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="h-6 w-6 flex-none rounded-full bg-gray-50" />
-      <form action="#" class="relative flex-auto">
-        <div class="overflow-hidden rounded-lg pb-12 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-          <label for="comment" class="sr-only">Add your comment</label>
-          <textarea rows="2" name="comment" id="comment" class="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Add your comment..." />
+          <p class="text-sm leading-6 text-gray-500">{{ item?.comment }}</p>
         </div>
-  
-        <div class="absolute inset-x-0 bottom-0 flex justify-between py-2 pl-3 pr-2">
-          <div class="flex items-center space-x-5">
-            <!-- <div class="flex items-center">
+      </template>
+
+      <template v-else>
+        <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-white">
+          <CheckCircleIcon v-if="item?.type === 'paid'" class="h-6 w-6 text-indigo-600" aria-hidden="true" />
+          <div v-else class="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300" />
+        </div>
+        <p class="flex-auto py-0.5 text-xs leading-5 text-gray-500">
+          <span class="font-medium text-gray-900">{{ item?.createdBy }}</span> {{ item?.newStatus }}.
+        </p>
+        <time :datetime="item.dateTime" class="flex-none py-0.5 text-xs leading-5 text-gray-500">{{
+          formatDistanceToNowStrict(item?.dateTime) }} ago</time>
+      </template>
+
+    </li>
+  </ul>
+
+  <!-- New comment form -->
+  <div class="mt-6 flex gap-x-3">
+    <img
+      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      alt="" class="h-6 w-6 flex-none rounded-full bg-gray-50" />
+    <form @submit="submitComment" action="#" class="relative flex-auto">
+      <div
+        class="overflow-hidden rounded-lg pb-12 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+        <label for="comment" class="sr-only">Add your comment</label>
+        <textarea rows="2" name="comment" id="comment" ref="commentTextArea"
+          class="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+          placeholder="Add your comment..." />
+      </div>
+
+      <div class="absolute inset-x-0 bottom-0 flex justify-between py-2 pl-3 pr-2">
+        <div class="flex items-center space-x-5">
+          <!-- <div class="flex items-center">
               <button type="button" class="-m-2.5 flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500">
                 <PaperClipIcon class="h-5 w-5" aria-hidden="true" />
                 <span class="sr-only">Attach a file</span>
@@ -94,71 +102,157 @@
                 </div>
               </Listbox>
             </div> -->
-          </div>
-          <button type="submit" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Comment</button>
         </div>
-      </form>
-    </div>
-  </template>
+        <Button type="submit" colour="white" size="sm" :loading="isButtonDisabled">Comment</Button>
+        <!-- <button type="submit" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Comment</button> -->
+      </div>
+    </form>
+  </div>
+</template>
   
-  <script setup>
-  import { ref } from 'vue'
-  import { CheckCircleIcon } from '@heroicons/vue/24/solid'
-  import {
-    FaceFrownIcon,
-    FaceSmileIcon,
-    FireIcon,
-    HandThumbUpIcon,
-    HeartIcon,
-    PaperClipIcon,
-    XMarkIcon,
-    ChatBubbleBottomCenterIcon,
-    ChatBubbleOvalLeftIcon,
-    UserCircleIcon,
-  } from '@heroicons/vue/20/solid'
-  import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
-  import { formatDistanceToNowStrictValue } from '@/helpers';
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router';
+import { CheckCircleIcon } from '@heroicons/vue/24/solid'
+import {
+  FaceFrownIcon,
+  FaceSmileIcon,
+  FireIcon,
+  HandThumbUpIcon,
+  HeartIcon,
+  PaperClipIcon,
+  XMarkIcon,
+  ChatBubbleBottomCenterIcon,
+  ChatBubbleOvalLeftIcon,
+  UserCircleIcon,
+} from '@heroicons/vue/20/solid'
+import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
+import { fetchWrapper,formatDistanceToNowStrictValue } from '@/helpers';
+import Button from '@/components/Button.vue'
 // import { UserCircleIcon } from '@heroicons/vue/24/outline';
+const baseUrl = import.meta.env.VITE_AUTH_API_URL;
+const isButtonDisabled = ref(false);
+const router = useRouter();
+const commentTextArea = ref(null); // Add a ref for the textarea element
 
-  function formatDistanceToNowStrict(a,b) {
-      return formatDistanceToNowStrictValue(a,b);
-    }
-  
-  // const activity = [
-  //   { id: 1, type: 'created', person: { name: 'Chelsea Hagon' }, date: '7d ago', dateTime: '2023-01-23T10:32' },
-  //   { id: 2, type: 'edited', person: { name: 'Chelsea Hagon' }, date: '6d ago', dateTime: '2023-01-23T11:03' },
-  //   { id: 3, type: 'sent', person: { name: 'Chelsea Hagon' }, date: '6d ago', dateTime: '2023-01-23T11:24' },
-  //   {
-  //     id: 4,
-  //     type: 'commented',
-  //     person: {
-  //       name: 'Chelsea Hagon',
-  //       imageUrl:
-  //         'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  //     },
-  //     comment: 'Called client, they reassured me the invoice would be paid by the 25th.',
-  //     date: '3d ago',
-  //     dateTime: '2023-01-23T15:56',
-  //   },
-  //   { id: 5, type: 'viewed', person: { name: 'Alex Curren' }, date: '2d ago', dateTime: '2023-01-24T09:12' },
-  //   { id: 6, type: 'paid', person: { name: 'Alex Curren' }, date: '1d ago', dateTime: '2023-01-24T09:20' },
-  // ]
-  const moods = [
-    { name: 'Excited', value: 'excited', icon: FireIcon, iconColor: 'text-white', bgColor: 'bg-red-500' },
-    { name: 'Loved', value: 'loved', icon: HeartIcon, iconColor: 'text-white', bgColor: 'bg-pink-400' },
-    { name: 'Happy', value: 'happy', icon: FaceSmileIcon, iconColor: 'text-white', bgColor: 'bg-green-400' },
-    { name: 'Sad', value: 'sad', icon: FaceFrownIcon, iconColor: 'text-white', bgColor: 'bg-yellow-400' },
-    { name: 'Thumbsy', value: 'thumbsy', icon: HandThumbUpIcon, iconColor: 'text-white', bgColor: 'bg-blue-500' },
-    { name: 'I feel nothing', value: null, icon: XMarkIcon, iconColor: 'text-gray-400', bgColor: 'bg-transparent' },
-  ]
-  
-  const selected = ref(moods[5])
 
-  const props = defineProps({
+const props = defineProps({
   activity: {
     type: Array,
     required: false,
   },
+  taskId: {
+    type: String,
+    required: false,
+  },
 });
 
-  </script>
+function formatDistanceToNowStrict(a, b) {
+  return formatDistanceToNowStrictValue(a, b);
+}
+
+const disableButton = () => {
+  console.log('disable button');
+  isButtonDisabled.value = true;
+};
+
+const enableButton = () => {
+  console.log('enable button');
+  isButtonDisabled.value = false;
+};
+
+const updateTask = (e) => {
+  console.log({ e })
+  return
+  disableButton();
+
+  if (!props.taskId || !body) return
+
+  console.log(props.taskId)
+
+  // Perform the API request
+  try {
+    fetchWrapper
+      .put(`${baseUrl}/api/workTask/${props.taskId}/comment`, body)
+      .then((response) => {
+        console.log({ response }, 'API response received');
+        enableButton();
+        // Emit the "completed" event to the parent component with the response data
+        emit('task-updated', response.data);
+        router.go(); // Refresh the page
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        enableButton();
+      });
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+const submitComment = (event) => {
+  event.preventDefault(); // Prevent the default form submission
+
+  const comment = commentTextArea.value.value; // Get the value of the textarea
+
+  // console.log(props);
+  console.log(props.taskId);
+  console.log(comment);
+
+  if (!props.taskId || !comment) return;
+
+  disableButton();
+
+  console.log(props.taskId);
+  console.log(comment);
+
+  // Perform the API request
+  try {
+    fetchWrapper
+      .post(`${baseUrl}/api/workTask/${props.taskId}/comment`, { comment }) // Include the comment in the request body
+      .then((response) => {
+        console.log({ response }, 'API response received');
+        enableButton();
+        emit('task-updated', response.data);
+        router.go(); // Refresh the page
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        enableButton();
+      });
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+// const activity = [
+//   { id: 1, type: 'created', person: { name: 'Chelsea Hagon' }, date: '7d ago', dateTime: '2023-01-23T10:32' },
+//   { id: 2, type: 'edited', person: { name: 'Chelsea Hagon' }, date: '6d ago', dateTime: '2023-01-23T11:03' },
+//   { id: 3, type: 'sent', person: { name: 'Chelsea Hagon' }, date: '6d ago', dateTime: '2023-01-23T11:24' },
+//   {
+//     id: 4,
+//     type: 'commented',
+//     person: {
+//       name: 'Chelsea Hagon',
+//       imageUrl:
+//         'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+//     },
+//     comment: 'Called client, they reassured me the invoice would be paid by the 25th.',
+//     date: '3d ago',
+//     dateTime: '2023-01-23T15:56',
+//   },
+//   { id: 5, type: 'viewed', person: { name: 'Alex Curren' }, date: '2d ago', dateTime: '2023-01-24T09:12' },
+//   { id: 6, type: 'paid', person: { name: 'Alex Curren' }, date: '1d ago', dateTime: '2023-01-24T09:20' },
+// ]
+const moods = [
+  { name: 'Excited', value: 'excited', icon: FireIcon, iconColor: 'text-white', bgColor: 'bg-red-500' },
+  { name: 'Loved', value: 'loved', icon: HeartIcon, iconColor: 'text-white', bgColor: 'bg-pink-400' },
+  { name: 'Happy', value: 'happy', icon: FaceSmileIcon, iconColor: 'text-white', bgColor: 'bg-green-400' },
+  { name: 'Sad', value: 'sad', icon: FaceFrownIcon, iconColor: 'text-white', bgColor: 'bg-yellow-400' },
+  { name: 'Thumbsy', value: 'thumbsy', icon: HandThumbUpIcon, iconColor: 'text-white', bgColor: 'bg-blue-500' },
+  { name: 'I feel nothing', value: null, icon: XMarkIcon, iconColor: 'text-gray-400', bgColor: 'bg-transparent' },
+]
+
+const selected = ref(moods[5])
+
+</script>

@@ -1,6 +1,6 @@
 <script>
 import { ref, onMounted } from 'vue';
-import { fetchWrapper, formatDate, formatDistanceValue, formatDistanceToNowStrictValue } from '@/helpers';
+import { fetchWrapper, formatDate, formatMoney, formatDistanceValue, formatDistanceToNowStrictValue, formatDurationHours } from '@/helpers';
 import { useRoute } from 'vue-router';
 import Layout from '@/layouts/Layout.vue'
 const baseUrl = import.meta.env.VITE_AUTH_API_URL;
@@ -64,6 +64,12 @@ export default {
     },
     formatDistanceToNowStrict(a,b) {
       return formatDistanceToNowStrictValue(a,b);
+    },
+    readableHours(h) {
+      return formatDurationHours(h);
+    },
+    readableMoney(a,b,c){
+      return formatMoney(a,b,c)
     }
   },
 }
@@ -91,40 +97,51 @@ export default {
           </div>
           <div class="flex mt-4 items-center gap-x-2">
             <p class="text-l text-slate-500">
-              <template v-if="task.description">{{ task.description }}</template>
+              <span class="whitespace-pre" v-if="task.description" v-html="task.description"></span> 
+              <!-- // make sure to format as HTML -->
               <!-- <template v-else>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.</template> -->
             </p>
           </div>
-            <DataPoint title="Re-Issue Reason" value="Not in JSON"/>
-            <DataPoint title="CPPM document Status" value="Not in JSON"/>
+            <!-- <DataPoint title="Re-Issue Reason" value="Not in JSON"/> -->
+            <!-- <DataPoint title="CPPM document Status" value="Not in JSON"/> -->
 
             <Divider>Details</Divider>
             <!-- <p class="font-medium text-xl mt-8">Details</p> -->
             <DataPoint title="Request Class" :value="task.requestClass?.data?.requestClassPath"/>
-            <DataPoint title="Service Class" value="Not in JSON"/>
+            <DataPoint title="Service Class" :value="task.serviceClass"/>
             <DataPoint title="Primary Work Location" :value="task.workLocation"/>
-            <DataPoint title="Certificate Required?" :value="task.certificateRequired"/>
-            <DataPoint title="Incident Severity" :value="task.incidentSeverity"/>
+            <!-- <DataPoint title="Certificate Required?" :value="task.certificateRequired"/> -->
+            <!-- <DataPoint title="Incident Severity" :value="task.incidentSeverity"/> -->
 
-            <Divider>Request</Divider>
-            <DataPoint title="ID" value="Not in JSON"/>
-            <DataPoint title="Full Name" value="Not in JSON"/>
-            <DataPoint title="Created" isDate :value="task.createdDateTime"/>
-            <DataPoint title="Request Type" :value="task.taskType"/>
-            <!-- <DataPoint title="Request Class" :value="task.requestClass"/> -->
-            <!-- <DataPoint title="" :value="task."/> -->
+            <template v-if="task.taskType !== 'Planned'">
+              <Divider>Request</Divider>
+              <DataPoint title="Requested by" :value="task?.request?.data?.requestedBy"/>
+              <DataPoint title="Requested for" :value="task?.request?.data?.requestedFor"/>
+              <DataPoint title="Request Type" :value="task?.taskType"/>
+              <DataPoint title="Created" isDate :value="task?.request?.data?.createdDateTime"/>
+              <DataPoint title="ID" :value="task?.request?.data?.id"/>
+
+              <!-- <DataPoint title="Full Name" value="Not in JSON"/> -->
+              <!-- <DataPoint title="Request Class" :value="task.requestClass"/> -->
+              <!-- <DataPoint title="" :value="task."/> -->
+            </template>
 
             <Divider>Planned</Divider>
-            <DataPoint title="Assigned" value="Not in JSON"/>
-            <DataPoint title="Respond Within" :value="task.respondTime"/>
+            <DataPoint title="Assigned" isDate :value="task?.assignedDateTime"/>
+            <DataPoint title="Respond Within" :value="task.respondWithin"/>
             <DataPoint title="Start" isDate :value="task.plannedStart"/>
             <DataPoint title="End" isDate :value="task.plannedEnd"/>
             <DataPoint title="Duration" :value="formatDistance(task.plannedEnd, task.plannedStart, {})"/>
-            <DataPoint title="Follow Up" value="Not in JSON"/>
-            <DataPoint title="Follow Up Within" value="Not in JSON"/>
-            <DataPoint title="Working Days" value="Not in JSON"/>
-            <DataPoint title="Working Hours" value="Not in JSON"/>
-            <DataPoint title="Cost" :value="task.baselineTotalCost"/>
+            <DataPoint title="Follow Up" isDate :value="task.plannedFollowUpDateTime"/>
+            <DataPoint title="Follow Up Within" :value="task.plannedFollowUpWithin"/>
+            <DataPoint title="Working Days" :value="formatDistance(task.plannedWorkingDays)"/>
+            <DataPoint title="Working Hours" :value="readableHours(task.plannedWorkingHours)"/>
+            <!-- <DataPoint title="Working Hours 1.5" :value="readableHours(1.5)"/>
+            <DataPoint title="Working Hours 50" :value="readableHours(50)"/>
+            <DataPoint title="Working Hours 0.21343645" :value="readableHours(0.21343645)"/> -->
+            <DataPoint title="Planned Cost" :value="readableMoney(task.plannedCost)"/>
+            <DataPoint title="Basline Total Cost" :value="readableMoney(task.baselineTotalCost)"/>
+            <DataPoint title="Basline Total Cost test" :value="readableMoney('9999.99')"/>
 
             <Divider>Actual</Divider>
             <DataPoint title="Start" isDate :value="task.actualStart"/>
@@ -141,7 +158,7 @@ export default {
 
       <template #aside>
           <div class="text-xl font-semibold"><h2>Activity</h2></div>
-          <div class="mt-4"><ActivityFeed :activity="task.activities"></ActivityFeed></div>
+          <div class="mt-4"><ActivityFeed :activity="task.activities" :taskId="task.recordId"></ActivityFeed></div>
       </template>
 
     </Layout>

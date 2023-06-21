@@ -6,7 +6,7 @@
   >
   <template v-if="loading">
       <div class="flex items-center">
-      <svg class="animate-spin mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <svg :class="['animate-spin mr-3 h-4 w-4', spinnercolours[colour]]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path
           class="opacity-75"
@@ -57,6 +57,19 @@ export default {
         'purple': '',
         'white': 'text-gray-900 bg-white hover:bg-gray-50 ring-1 ring-inset ring-gray-300',
         'soft-indigo': 'bg-indigo-500 text-white hover:bg-indigo-400 focus-visible:outline-indigo-500',
+      },
+      spinnercolours: {
+        'pink': 'text-white',
+        'gray': 'text-white',
+        'red': 'text-white',
+        'yellow': 'text-white',
+        'green': 'text-white',
+        'blue': 'text-white',
+        'sky': 'text-white',
+        'indigo': 'text-white',
+        'purple': 'text-white',
+        'white': 'text-gray-900',
+        'soft-indigo': 'text-white',
       },
       sizes: {
         'xs': 'px-2 py-1 text-xs',
