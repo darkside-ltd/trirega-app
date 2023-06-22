@@ -7,7 +7,7 @@
                     <router-link :to="link.href" class="flex gap-3">
                         <span class="absolute inset-x-0 -top-px bottom-0" />
                         {{ link.name }}
-                        <Badge v-if="count !== null" :colour="badgeColour">{{ count }}</Badge>
+                        <Badge v-if="count !== null">{{ count }}</Badge>
                     </router-link>
                 </p>
                 <p class="mt-1 flex text-xs leading-5 text-gray-500">
