@@ -57,6 +57,34 @@ export const useTasksStore = defineStore({
           }
         });
       },
+      highPriority(state) {
+        return state?.tasks?.data?.filter((task) => {
+          if (task.status === 'Active') {
+            return task.requestClassPriority === 'High';
+          }
+        });
+      },
+      medPriority(state) {
+        return state?.tasks?.data?.filter((task) => {
+          if (task.status === 'Active') {
+            return task.requestClassPriority === 'Medium';
+          }
+        });
+      },
+      lowPriority(state) {
+        return state?.tasks?.data?.filter((task) => {
+          if (task.status === 'Active') {
+            return task.requestClassPriority === 'Low';
+          }
+        });
+      },
+      getTasksByStatus(state) {
+        return (status) => {
+          return state?.tasks?.data?.filter((task) => {
+              return task.status === status;
+          });
+        };
+      },
     },
   });
   

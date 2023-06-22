@@ -1,5 +1,5 @@
 <template>
-  <Badge :colour="getColourByPriority">{{ getTextByPriority }}</Badge>
+  <Badge v-if="priority" :colour="getColourByPriority" :dark="dark">{{ getTextByPriority }}</Badge>
 </template>
 
 <script>
@@ -11,6 +11,10 @@ export default {
       type: String,
       required: true,
     },
+    dark: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {
     Badge,
@@ -19,12 +23,13 @@ export default {
     getColourByPriority() {
       // Define your mapping of priority to colour
       const colourMap = {
-        High: 'red',
-        Medium: 'yellow',
-        Low: 'green',
+        High: this.dark ? 'dark-red' : 'red',
+        Medium: this.dark ? 'dark-yellow' : 'yellow',
+        Low: this.dark ? 'dark-green' : 'green',
       };
       // Return the corresponding colour based on the priority prop
-      return colourMap[this.priority] || 'grey'; // Default to 'grey' if priority not matched
+      const priorityColour = colourMap[this.priority];
+      return priorityColour || (this.dark ? 'dark-gray' : 'gray'); // Fallback to gray or dark-gray if priority not matched
     },
     getTextByPriority() {
       // Define your mapping of priority to text

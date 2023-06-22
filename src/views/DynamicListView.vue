@@ -54,7 +54,23 @@ export default {
         body.status = 'Completed'
         title = "Completed Tasks"
       }
+      if (type === 'planned') {
+        body.status = 'Planned'
+        title = "Planned Tasks"
+      }
+      if (type === 'closed') {
+        body.status = 'Closed'
+        title = "Closed Tasks"
+      }
+      if (type === 'retired') {
+        body.status = 'Retired'
+        title = "Retired Tasks"
+      }
 
+      if (type === 'emergency') {
+        body.requestClassPriority = 'Emergency'
+        title = "Emergency"
+      }
       if (type === 'high-priority') {
         body.requestClassPriority = 'High'
         title = "High Priority"

@@ -4,6 +4,8 @@ import { useTasksStore } from '@/stores';
 import Layout from '@/layouts/Layout.vue';
 import ListCard from '@/components/ListCard.vue';
 import TaskList from '@/components/TaskList.vue';
+import QuickLinkList from '@/components/QuickLinkList.vue';
+import QuickLink from '@/components/QuickLink.vue'
 
 export default {
   title: 'Dashboard',
@@ -11,17 +13,8 @@ export default {
     Layout,
     ListCard,
     TaskList,
-  },
-  data() {
-    return {
-      navigation: [
-        { name: 'Active', href: '/list/active' },
-        { name: 'Completed', href: '/list/completed' },
-        { name: 'High Priority', href: '/list/high-priority' },
-        { name: 'Medium Priority', href: '/list/med-priority' },
-        { name: 'Low Priority', href: '/list/low-priority' },
-      ]
-    }
+    QuickLink,
+    QuickLinkList,
   },
   setup() {
     const taskStore = useTasksStore();
@@ -33,9 +26,26 @@ export default {
       await taskStore.getAll();
     }
 
+    const statusLinks = [
+      { name: 'Planned', href: '/list/planned', count: computed(() => taskStore.dueThisWeek.length) },
+      { name: 'Active', href: '/list/active' },
+      { name: 'Completed', href: '/list/completed' },
+      { name: 'Closed', href: '/list/closed' },
+      { name: 'Retired', href: '/list/retired' },
+    ];
+
+    const priorityLinks = [
+      { name: 'Emergency', href: '/list/emergency' },
+      { name: 'High Priority', href: '/list/high-priority' },
+      { name: 'Medium Priority', href: '/list/med-priority' },
+      { name: 'Low Priority', href: '/list/low-priority' },
+    ];
+
     return {
       taskStore,
       tasks,
+      statusLinks,
+      priorityLinks,
     };
   },
 };
@@ -58,18 +68,23 @@ export default {
     </template>
 
     <template #aside>
-      <ListCard title="Links">
-        <p>Shortcuts and counts of common task status/types ()</p>
-        <template v-for="link in navigation" :key="link.href">
-          <router-link :to="link.href">{{ link.name }}</router-link>
-        </template>
-      </ListCard>
+      <h3 class="text-base font-semibold leading-6 text-gray-900 mb-4">Task by Status</h3>
+      <QuickLinkList>
+          <QuickLink :link="statusLinks[0]" :count="taskStore?.getTasksByStatus('Planned')?.length"/>
+          <QuickLink :link="statusLinks[1]" :count="taskStore?.getTasksByStatus('Active')?.length" />
+          <QuickLink :link="statusLinks[2]" :count="taskStore?.getTasksByStatus('Completed')?.length" />
+          <QuickLink :link="statusLinks[3]" :count="taskStore?.getTasksByStatus('Closed')?.length" />
+          <QuickLink :link="statusLinks[4]"  :count="taskStore?.getTasksByStatus('Retired')?.length"/>
+      </QuickLinkList>
+
+      <h3 class="text-base font-semibold leading-6 text-gray-900 mb-4 mt-6">Task by Priority</h3>
+      <QuickLinkList>
+          <QuickLink :link="priorityLinks[0]" :count="taskStore?.emergencies?.length"/>
+          <QuickLink :link="priorityLinks[1]" :count="taskStore?.highPriority?.length"/>
+          <QuickLink :link="priorityLinks[2]" :count="taskStore?.medPriority?.length"/>
+          <QuickLink :link="priorityLinks[3]" :count="taskStore?.lowPriority?.length"/>
+      </QuickLinkList>
+
     </template>
   </Layout>
 </template>
-
-<!-- // not yet possible -->
-<!-- <p>Your Tasks (Recently modified tasks)</p> -->
-<!-- <p>Overdue (plannedStart is in past relative to exact moment in time. plannedEnd is in past)</p>
-<p>Due this week (plannedStart or plannedEnd this week - next 7 days)</p>
-<p>Emergency (taskPriority 'Emergency')</p> -->

@@ -80,10 +80,10 @@ export default {
 
       <template #topleft>
         <div class="flex gap-2 mt-2">
-          <badge v-if="task.status && task.status === 'Active'" colour="sky"><dot :status="task.status">{{ task.status }}</dot> {{ task.status }}</badge>
-          <badge v-else>{{ task.status }}</badge>
-          <badge v-if="task.taskType && task.taskType !== task.status">{{ task.taskType }}</badge>
-          <badge-priority :priority="task.requestClassPriority"></badge-priority>
+          <badge v-if="task.status && task.status === 'Active'" colour="dark-sky"><dot :status="task.status">{{ task.status }}</dot> {{ task.status }}</badge>
+          <badge v-else colour="dark-gray">{{ task.status }}</badge>
+          <badge v-if="task.taskType && task.taskType !== task.status" colour="dark-gray">{{ task.taskType }}</badge>
+          <badge-priority :priority="task.requestClassPriority" dark></badge-priority>
         </div>
       </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white drop-shadow-md">
+    <div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white ring-1 ring-gray-900/5">
       <div
         v-if="accordion"
         class="flex items-center justify-between px-4 py-5 sm:px-6 cursor-pointer"
@@ -76,14 +76,13 @@
     },
     computed: {
         badgeColour() {
-            console.log(this.type)
             const t = this.type
             if(t === 'emergency' && this.count > 0) return 'red'
             if(t === 'emergency' && this.count === 0) return 'green'
-
             if(t === 'overdue' && this.count > 5) return 'red'
             if(t === 'overdue' && this.count > 0) return 'orange'
             if(t === 'overdue' && this.count === 0) return 'green'
+            return
         }
     }
   };

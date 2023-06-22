@@ -1,22 +1,23 @@
 <template>
-  <div class="min-h-full text-slate-950">
-    <div class="bg-indigo-600 pb-32">
-      <Disclosure as="nav" class="border-b border-indigo-300 border-opacity-25 bg-indigo-600 lg:border-none"
+  <div class="min-h-full text-zinc-950">
+    <div id="get tailwind to include these classes" class="bg-zinc-100 bg-zinc-50 sr-only"></div>
+    <div class="bg-zinc-950 pb-32">
+      <Disclosure as="nav" class="border-b border-zinc-300 border-opacity-25 bg-zinc-950 lg:border-none"
         v-slot="{ open }">
         <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
           <div
-            class="relative flex h-16 items-center justify-between lg:border-b lg:border-indigo-400 lg:border-opacity-25">
+            class="relative flex h-16 items-center justify-between lg:border-b lg:border-zinc-400 lg:border-opacity-25">
             <div class="flex items-center px-2 lg:px-0">
               <div class="flex-shrink-0">
-                <router-link to="/"><img class="block h-8 w-8" src="/images/logoipsum-249.svg?color=indigo&shade=300" alt="Your Company" /></router-link>
+                <router-link to="/"><img class="block h-8 w-8" src="/images/logoipsum-249.svg?color=zinc&shade=300" alt="Your Company" /></router-link>
               </div>
               <div class="hidden lg:ml-10 lg:block">
                 <div class="flex space-x-4">
                   <router-link v-for="item in navigation" :key="item.name" :to="item.href"
-                    :class="[item.current ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500 hover:bg-opacity-75', 'rounded-md py-2 px-3 text-sm font-medium']"
+                    :class="[item.current ? 'bg-zinc-700 text-white' : 'text-white hover:bg-zinc-500 hover:bg-opacity-75', 'rounded-md py-2 px-3 text-sm font-medium']"
                     :aria-current="item.current ? 'page' : undefined"
-                    exact-active-class="test-class1 bg-indigo-700 text-white"
-                    exact-path-active-class="test-class2 router-link-active bg-indigo-700 text-white">{{ item.name
+                    exact-active-class="test-class1 bg-zinc-700 text-white"
+                    exact-path-active-class="test-class2 router-link-active bg-zinc-700 text-white">{{ item.name
                     }}</router-link>
                 </div>
               </div>
@@ -29,7 +30,7 @@
             <div class="flex lg:hidden">
               <!-- Mobile menu button -->
               <DisclosureButton
-                class="inline-flex items-center justify-center rounded-md bg-indigo-600 p-2 text-indigo-200 hover:bg-indigo-500 hover:bg-opacity-75 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600">
+                class="inline-flex items-center justify-center rounded-md bg-zinc-600 p-2 text-zinc-200 hover:bg-zinc-500 hover:bg-opacity-75 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-600">
                 <span class="sr-only">Open main menu</span>
                 <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
                 <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
@@ -38,7 +39,7 @@
             <div class="hidden lg:ml-4 lg:block">
               <div class="flex items-center">
                 <button type="button"
-                  class="flex-shrink-0 rounded-full bg-indigo-600 p-1 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600">
+                  class="flex-shrink-0 rounded-full bg-zinc-600 p-1 text-zinc-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-600">
                   <span class="sr-only">View notifications</span>
                   <BellIcon class="h-6 w-6" aria-hidden="true" />
                 </button>
@@ -47,7 +48,7 @@
                 <Menu as="div" class="relative ml-3 flex-shrink-0">
                   <div>
                     <MenuButton
-                      class="flex rounded-full bg-indigo-600 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600">
+                      class="flex rounded-full bg-zinc-600 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-600">
                       <span class="sr-only">Open user menu</span>
                       <img class="h-8 w-8 rounded-full" :src="user.imageUrl" alt="" />
                     </MenuButton>
@@ -74,29 +75,29 @@
         <DisclosurePanel class="lg:hidden">
           <div class="space-y-1 px-2 pb-3 pt-2">
             <router-link v-for="item in navigation" :key="item.name" as="a" :to="item.href"
-              :class="[item.current ? 'bg-indigo-700 text-white' : 'text-white hover:bg-indigo-500 hover:bg-opacity-75', 'block rounded-md py-2 px-3 text-base font-medium']"
+              :class="[item.current ? 'bg-zinc-700 text-white' : 'text-white hover:bg-zinc-500 hover:bg-opacity-75', 'block rounded-md py-2 px-3 text-base font-medium']"
               class="block rounded-md py-2 px-3 text-base font-medium" :aria-current="item.current ? 'page' : undefined"
-              exact-active-class="bg-indigo-700 text-white" exact-path-active-class="bg-indigo-700 text-white">
+              exact-active-class="bg-zinc-700 text-white" exact-path-active-class="bg-zinc-700 text-white">
               {{ item.name }}</router-link>
           </div>
-          <div class="border-t border-indigo-700 pb-3 pt-4">
+          <div class="border-t border-zinc-700 pb-3 pt-4">
             <div class="flex items-center px-5">
               <div class="flex-shrink-0">
                 <img class="h-10 w-10 rounded-full" :src="user.imageUrl" alt="" />
               </div>
               <div class="ml-3">
                 <div class="text-base font-medium text-white">{{ user.name }}</div>
-                <div class="text-sm font-medium text-indigo-300">{{ user.email }}</div>
+                <div class="text-sm font-medium text-zinc-300">{{ user.email }}</div>
               </div>
               <button type="button"
-                class="ml-auto flex-shrink-0 rounded-full bg-indigo-600 p-1 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600">
+                class="ml-auto flex-shrink-0 rounded-full bg-zinc-600 p-1 text-zinc-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-600">
                 <span class="sr-only">View notifications</span>
                 <BellIcon class="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
             <div class="mt-3 space-y-1 px-2">
               <router-link v-for="item in userNavigation" :key="item.name" as="a" :to="item.href"
-                class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75">{{
+                class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-zinc-500 hover:bg-opacity-75">{{
                   item.name }}</router-link>
             </div>
           </div>
