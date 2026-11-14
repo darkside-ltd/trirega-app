@@ -6,6 +6,7 @@ import ListCard from '@/components/ListCard.vue';
 import TaskList from '@/components/TaskList.vue';
 import QuickLinkList from '@/components/QuickLinkList.vue';
 import QuickLink from '@/components/QuickLink.vue'
+import Button from '@/components/Button.vue'
 
 export default {
   title: 'Dashboard',
@@ -15,6 +16,7 @@ export default {
     TaskList,
     QuickLink,
     QuickLinkList,
+    Button,
   },
   setup() {
     const taskStore = useTasksStore();
@@ -53,6 +55,11 @@ export default {
 
 <template>
   <Layout h1="Dashboard" split>
+
+    <template #topright>
+      <Button colour="soft-indigo" size="md" :loading="isButtonDisabled">New Task</Button>
+    </template>
+
     <template #content>
       <div class="pb-6 flex flex-col gap-4">
         <ListCard title="Emergency" :count="taskStore?.emergencies?.length" type="emergency">

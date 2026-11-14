@@ -8,10 +8,10 @@
           <div
             class="relative flex h-16 items-center justify-between lg:border-b lg:border-zinc-400 lg:border-opacity-25">
             <div class="flex items-center px-2 lg:px-0">
-              <div class="flex-shrink-0">
+              <!-- <div class="flex-shrink-0">
                 <router-link to="/"><img class="block h-8 w-8" src="/images/logoipsum-249.svg?color=zinc&shade=300" alt="Your Company" /></router-link>
-              </div>
-              <div class="hidden lg:ml-10 lg:block">
+              </div> -->
+              <div class="hidden lg:block">
                 <div class="flex space-x-4">
                   <router-link v-for="item in navigation" :key="item.name" :to="item.href"
                     :class="[item.current ? 'bg-zinc-700 text-white' : 'text-white hover:bg-zinc-500 hover:bg-opacity-75', 'rounded-md py-2 px-3 text-sm font-medium']"
@@ -24,13 +24,15 @@
             </div>
             <div class="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
               <div class="w-full max-w-lg lg:max-w-xs">
-                <SearchBox></SearchBox>
+                <!-- <SearchBox></SearchBox> -->
+                <!-- <SearchBox2></SearchBox2> -->
+                <SearchBox2></SearchBox2>
               </div>
             </div>
             <div class="flex lg:hidden">
               <!-- Mobile menu button -->
               <DisclosureButton
-                class="inline-flex items-center justify-center rounded-md bg-zinc-600 p-2 text-zinc-200 hover:bg-zinc-500 hover:bg-opacity-75 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-600">
+                class="inline-flex items-center justify-center rounded-md bg-zinc-950 p-2 text-zinc-200 hover:bg-zinc-500 hover:bg-opacity-75 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-600">
                 <span class="sr-only">Open main menu</span>
                 <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
                 <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
@@ -111,7 +113,7 @@
           <div>
             <slot name="topleft"></slot>
           </div>
-          <div>
+          <div class="mt-6 sm:-mt-6">
             <slot name="topright"></slot>
           </div>
         </div>
@@ -172,6 +174,8 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 import SearchBox from '@/components/SearchBox.vue'
+import SearchBox2 from '@/components/SearchBox2.vue'
+import SearchBox1 from '@/components/SearchBox1.vue'
 
 const user = {
   name: 'Tom Cook',

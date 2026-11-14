@@ -34,51 +34,28 @@
 // operators ['greater than or equals','less than or equals']
 
 const baseUrl = import.meta.env.VITE_AUTH_API_URL;
-// import { useRouter } from 'vue-router';
-// const router = useRouter();
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
-export function searchQuery(event) {
-    const e = event
-    const target = e.target
-    const value = target.value
+export function searchQuery(value, router) {
+    // const e = event
+    // const target = e.target
+    // const value = target.value
     console.log({ baseUrl }, value)
 
     // create an object
-    let body = {
-        "page": 0,
-        "pageSize": 100
-    }
+    // let body = {
+    //     "page": 0,
+    //     "pageSize": 100
+    // }
 
     // body.description = value
-    body.taskName = value
+    // body.taskName = value
     // body.requestClass = value
     // body.modifiedBy = value
 
-    console.log({body})
+    // console.log({body})
 
-    // router.push({ name: 'search', query: { query: searchQuery.value } });
-
-}
-
-export function searchField(event) {
-    const e = event
-    const target = e.target
-    const value = target.value
-    console.log({ baseUrl }, value)
-
-    // create an object
-    let body = {
-        "page": 0,
-        "pageSize": 100
-    }
-
-    // body.description = value
-    body.taskName = value
-    // body.requestClass = value
-    // body.modifiedBy = value
-
-    console.log({body})
-
-    // router.push({ name: 'search', query: { query: searchQuery.value } });
+    return router.push({ name: 'search', query: { query: value } });
 
 }

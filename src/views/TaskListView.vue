@@ -8,31 +8,20 @@ export default {
   title: 'All Tasks',
   setup() {
     const taskStore = useTasksStore();
-    const tasks = ref([]);
 
     onMounted(fetchData);
 
     async function fetchData() {
-      try {
-        tasks.value = await taskStore.getAll();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
+      await taskStore.getAll();
     }
 
     return {
       taskStore,
-      tasks,
     }
   },
   components: {
     TaskList,
     Layout,
-  },
-  data() {
-    return {
-      items: []
-    };
   },
 }
 </script>

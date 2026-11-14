@@ -28,7 +28,7 @@ function authHeader(url) {
     const { user } = useAuthStore();
     const isLoggedIn = !!user?.access_token;
     const isApiUrl = url.startsWith(import.meta.env.VITE_AUTH_API_URL);
-    console.log({isLoggedIn},{isApiUrl})
+    // console.log({isLoggedIn},{isApiUrl})
     if (isLoggedIn && isApiUrl) {
         return { Authorization: `Bearer ${user.access_token}` };
     } else {
@@ -37,19 +37,28 @@ function authHeader(url) {
 }
 
 function handleResponse(response) {
+    // console.log('handle response')
     return response.text().then(text => {
-        const data = text && JSON.parse(text);
+        // console.log(text, response)
+        let data
         
         if (!response.ok) {
+            // console.log('got here')
             const { user, logout } = useAuthStore();
-            if ([401, 403].includes(response.status) && user) {
+            if ([401, 403].includes(response.status)) {
                 // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
+                // console.log('log em out')
                 logout();
             }
 
+            data = text && JSON.parse(text);
+            // console.log(data)
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
+
+        data = text && JSON.parse(text);
+        // console.log(data)
 
         return data;
     });

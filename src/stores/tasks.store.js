@@ -14,7 +14,7 @@ export const useTasksStore = defineStore({
         fetchWrapper
           .get(baseUrl)
           .then((tasks) => {
-            console.log({ tasks });
+            // console.log({ tasks });
             this.tasks.data = tasks.data;
             this.tasks.loading = false;
             return;

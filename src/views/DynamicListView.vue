@@ -94,6 +94,69 @@ export default {
         console.error('Error fetching search results:', error);
       }
     },
+    async fetchSearchResultsFromStore() {
+      let title
+      let body = {
+        page: 0,
+        pageSize: 100,
+      };
+
+      let type = this.$route.params.listType;
+      console.log(this.$route.params.listType);
+
+      console.log({ type });
+      if (!type) return;
+
+      type = type.toLowerCase();
+
+      if (type === 'active') {
+        body.status = 'Active'
+        title = "Active Tasks"
+      }
+      if (type === 'completed') {
+        body.status = 'Completed'
+        title = "Completed Tasks"
+      }
+      if (type === 'planned') {
+        body.status = 'Planned'
+        title = "Planned Tasks"
+      }
+      if (type === 'closed') {
+        body.status = 'Closed'
+        title = "Closed Tasks"
+      }
+      if (type === 'retired') {
+        body.status = 'Retired'
+        title = "Retired Tasks"
+      }
+
+      if (type === 'emergency') {
+        body.requestClassPriority = 'Emergency'
+        title = "Emergency"
+      }
+      if (type === 'high-priority') {
+        body.requestClassPriority = 'High'
+        title = "High Priority"
+      }
+      if (type === 'med-priority') {
+        body.requestClassPriority = 'Medium'
+        title = "Medium Priority"
+      }
+      if (type === 'low-priority') {
+        body.requestClassPriority = 'Low'
+        title = "Low Priority"
+      }
+
+      document.title = title
+      this.pageHeader = title
+
+      try {
+        const response = await fetchWrapper.post(baseUrl, body);
+        this.tasks = response;
+      } catch (error) {
+        console.error('Error fetching search results:', error);
+      }
+    },
   },
 };
 </script>
